@@ -26,14 +26,15 @@ namespace Player
 
         private void FixedUpdate()
         {
+            var desiredVelocity = GetRotatedMovementDirection() * speed;
             var currentVelocity = new Vector2(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.z);
-            var deltaVelocity = (CalculateDesiredVelocity() - currentVelocity) * accelerationRate;
+            var deltaVelocity = (desiredVelocity - currentVelocity) * accelerationRate;
             var newHorizontalVelocity = currentVelocity + deltaVelocity;
             _rigidbody.linearVelocity = new Vector3(newHorizontalVelocity.x, _rigidbody.linearVelocity.y,
                 newHorizontalVelocity.y);
         }
 
-        private Vector2 CalculateDesiredVelocity()
+        public Vector2 GetRotatedMovementDirection()
         {
             InputAxis cameraDirection = orbitalCamera.HorizontalAxis;
 
@@ -43,12 +44,12 @@ namespace Player
             float sinAngle = Mathf.Sin(cameraAngleRad);
             float cosAngle = Mathf.Cos(cameraAngleRad);
 
-            var desiredVelocity = new Vector2(
+            var rotatedMovementDirection = new Vector2(
                 _movementDirection.x * cosAngle - _movementDirection.y * sinAngle,
                 _movementDirection.x * sinAngle + _movementDirection.y * cosAngle
             );
 
-            return desiredVelocity * speed;
+            return rotatedMovementDirection;
         }
     }
 }
