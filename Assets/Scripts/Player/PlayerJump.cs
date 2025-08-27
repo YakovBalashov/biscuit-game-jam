@@ -36,10 +36,8 @@ namespace Player
 
         private void Jump()
         {
-            if (IsGrounded())
-            {
-                _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
+            if (!IsGrounded()) return;
+            _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
         private bool IsGrounded()

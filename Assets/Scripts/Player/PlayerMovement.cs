@@ -9,8 +9,7 @@ namespace Player
         [SerializeField] private float speed;
         [SerializeField] private float accelerationRate;
 
-        private Vector3 _movementDirection;
-        private Vector3 _desiredVelocity;
+        private Vector2 _desiredVelocity;
         private Rigidbody _rigidbody;
 
         private void Awake()
@@ -20,15 +19,16 @@ namespace Player
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            var movementDirection2D = context.ReadValue<Vector2>().normalized;
-            _desiredVelocity = new Vector3(movementDirection2D.x, 0, movementDirection2D.y) * speed;
+            var normalizedMovementDirection = context.ReadValue<Vector2>().normalized;
+            _desiredVelocity = normalizedMovementDirection * speed;
         }
 
         private void FixedUpdate()
         {
-            var currentVelocity = _rigidbody.linearVelocity;
-            var deltaVelocity = _desiredVelocity - currentVelocity;
-            _rigidbody.linearVelocity = currentVelocity + deltaVelocity * accelerationRate;
+            var currentVelocity = new Vector2(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.z);
+            var deltaVelocity = (_desiredVelocity - currentVelocity) * accelerationRate;
+            var newHorizontalVelocity = currentVelocity + deltaVelocity;
+            _rigidbody.linearVelocity = new Vector3(newHorizontalVelocity.x, _rigidbody.linearVelocity.y, newHorizontalVelocity.y);
         }
     }
 }
