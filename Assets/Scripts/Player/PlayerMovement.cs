@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,9 +9,10 @@ namespace Player
     {
         [SerializeField] private float speed;
         [SerializeField] private float accelerationRate;
+        [SerializeField] private CinemachineOrbitalFollow orbitalCamera;
 
-        private Vector2 _desiredVelocity;
         private Rigidbody _rigidbody;
+        private Vector2 _movementDirection;
 
         private void Awake()
         {
@@ -19,16 +21,34 @@ namespace Player
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            var normalizedMovementDirection = context.ReadValue<Vector2>().normalized;
-            _desiredVelocity = normalizedMovementDirection * speed;
+            _movementDirection = context.ReadValue<Vector2>().normalized;
         }
 
         private void FixedUpdate()
         {
             var currentVelocity = new Vector2(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.z);
-            var deltaVelocity = (_desiredVelocity - currentVelocity) * accelerationRate;
+            var deltaVelocity = (CalculateDesiredVelocity() - currentVelocity) * accelerationRate;
             var newHorizontalVelocity = currentVelocity + deltaVelocity;
-            _rigidbody.linearVelocity = new Vector3(newHorizontalVelocity.x, _rigidbody.linearVelocity.y, newHorizontalVelocity.y);
+            _rigidbody.linearVelocity = new Vector3(newHorizontalVelocity.x, _rigidbody.linearVelocity.y,
+                newHorizontalVelocity.y);
+        }
+
+        private Vector2 CalculateDesiredVelocity()
+        {
+            InputAxis cameraDirection = orbitalCamera.HorizontalAxis;
+
+            float cameraAngle = -cameraDirection.Value;
+            float cameraAngleRad = cameraAngle * Mathf.Deg2Rad;
+
+            float sinAngle = Mathf.Sin(cameraAngleRad);
+            float cosAngle = Mathf.Cos(cameraAngleRad);
+
+            var desiredVelocity = new Vector2(
+                _movementDirection.x * cosAngle - _movementDirection.y * sinAngle,
+                _movementDirection.x * sinAngle + _movementDirection.y * cosAngle
+            );
+
+            return desiredVelocity * speed;
         }
     }
 }
