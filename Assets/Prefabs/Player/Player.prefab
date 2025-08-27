@@ -103,7 +103,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810275699736213529}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7cb4da3718df2bd4bb3d44c29ac45b58, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a52a8444de9f734e89cc4549194b593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
-  speed: 8
+  speed: 4
   accelerationRate: 0.1
 --- !u!114 &-8852006750848063152
 MonoBehaviour:
@@ -143,6 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8578396437719c4e8633cf614e1d578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerJump
+  fallSpeed: 6
+  jumpForce: 6
+  groundedRaycastDistance: 1.3
 --- !u!114 &8762789910082882398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +268,19 @@ MonoBehaviour:
     m_ActionId: d4c883dc-7d5f-40e3-9732-6cc51f6cd039
     m_ActionName: 'Player/Crouch[/Keyboard/c]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -8852006750848063152}
+        m_TargetAssemblyTypeName: Player.PlayerJump, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f58d693f-d319-4037-a990-a192bb295386
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
@@ -310,5 +325,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
