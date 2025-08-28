@@ -7,15 +7,18 @@ namespace Player
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] private float speed;
+        [SerializeField] private float defaultMaxSpeed;
         [SerializeField] private float accelerationRate;
         [SerializeField] private CinemachineOrbitalFollow orbitalCamera;
 
         private Rigidbody _rigidbody;
         private Vector2 _movementDirection;
 
+        public float CurrentMaxSpeed { get; set; }
+
         private void Awake()
         {
+            CurrentMaxSpeed = defaultMaxSpeed;
             _rigidbody = GetComponent<Rigidbody>();
         }
 
@@ -26,7 +29,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            var desiredVelocity = GetRotatedMovementDirection() * speed;
+            var desiredVelocity = GetRotatedMovementDirection() * CurrentMaxSpeed;
             var currentVelocity = new Vector2(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.z);
             var deltaVelocity = (desiredVelocity - currentVelocity) * accelerationRate;
             var newHorizontalVelocity = currentVelocity + deltaVelocity;
@@ -51,5 +54,12 @@ namespace Player
 
             return rotatedMovementDirection;
         }
+
+        public void ResetMaxSpeed()
+        {
+            CurrentMaxSpeed = defaultMaxSpeed;
+        }
+        
+        
     }
 }
