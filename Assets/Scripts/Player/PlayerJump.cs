@@ -9,7 +9,9 @@ namespace Player
     {
         [SerializeField] private float fallSpeed;
         [SerializeField] private float jumpForce;
-        [SerializeField] private float groundedRaycastDistance;
+        [SerializeField] private float groundCheckRadius = 0.2f;
+        [SerializeField] private float groundCheckDistance = 0.3f;
+        [SerializeField] private LayerMask groundLayerMask;
 
         private Rigidbody _rigidbody;
         private bool _isJumpPressed;
@@ -43,7 +45,8 @@ namespace Player
         private bool IsGrounded()
         {
             if (Math.Abs(_rigidbody.linearVelocity.y) > 0.001f) return false;
-            return Physics.Raycast(transform.position, Vector3.down, out _, groundedRaycastDistance);
+            Vector3 checkPos = transform.position + Vector3.down * groundCheckDistance;
+            return Physics.CheckSphere(checkPos, groundCheckRadius, groundLayerMask);
         }
     }
 }
