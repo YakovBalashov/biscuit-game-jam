@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -1161905732396948927}
   - component: {fileID: -8852006750848063152}
   - component: {fileID: 8762789910082882398}
+  - component: {fileID: -3441557287398388106}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -317,6 +318,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5874f6e2922984a98023b850063193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerGrab
+--- !u!114 &-3441557287398388106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810275699736213529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41146908bbcfa1946adbb22252125a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerDeath
 --- !u!1 &1012397880651120822
 GameObject:
   m_ObjectHideFlags: 0
