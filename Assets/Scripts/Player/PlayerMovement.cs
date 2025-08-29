@@ -1,3 +1,4 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +11,9 @@ namespace Player
         [SerializeField] private float defaultMaxSpeed;
         [SerializeField] private float accelerationRate;
         [SerializeField] private CinemachineOrbitalFollow orbitalCamera;
-
+        [SerializeField] private Animator animator;
+        
+        private static readonly int SpeedID = Animator.StringToHash("Speed");
         private Rigidbody _rigidbody;
         private Vector2 _movementDirection;
         private PlayerDash _playerDash;
@@ -31,6 +34,12 @@ namespace Player
         public void OnMove(InputAction.CallbackContext context)
         {
             _movementDirection = context.ReadValue<Vector2>().normalized;
+        }
+
+        private void Update()
+        {
+            var currentSpeed = new Vector2(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.z).magnitude;
+            animator.SetFloat(SpeedID, currentSpeed);
         }
 
         private void FixedUpdate()
