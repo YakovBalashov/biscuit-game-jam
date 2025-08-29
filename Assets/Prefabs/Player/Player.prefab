@@ -244,7 +244,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &-4462808905742307599
@@ -355,13 +355,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012397880651120822}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1612893, y: -0.015093556, z: -0.098642886, w: 0.981849}
-  m_LocalPosition: {x: -0.0007396341, y: -0.0066849245, z: 0.00089415774}
-  m_LocalScale: {x: 0.0013333333, y: 0.0013333331, z: 0.016666666}
+  m_LocalRotation: {x: 0.060614027, y: -0.026096119, z: -0.10307039, w: 0.9924825}
+  m_LocalPosition: {x: 0.00003, y: -0.00613, z: 0.00073}
+  m_LocalScale: {x: 0.0022222213, y: 0.0022222213, z: 0.016666666}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6457125271426662194}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.6, y: -3.711, z: -12.072}
 --- !u!212 &2253275146702985888
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -409,7 +409,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4a1ff4e3da1b1ac4f90b7ec0d1169020, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ee427a16f6b3634aac7aaa21f7d1f59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
