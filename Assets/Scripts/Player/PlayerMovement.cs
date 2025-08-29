@@ -13,6 +13,7 @@ namespace Player
 
         private Rigidbody _rigidbody;
         private Vector2 _movementDirection;
+        private PlayerDash _playerDash;
 
         public float CurrentMaxSpeed { get; set; }
 
@@ -22,6 +23,11 @@ namespace Player
             _rigidbody = GetComponent<Rigidbody>();
         }
 
+        private void Start()
+        {
+            _playerDash = GetComponent<PlayerDash>();
+        }
+
         public void OnMove(InputAction.CallbackContext context)
         {
             _movementDirection = context.ReadValue<Vector2>().normalized;
@@ -29,6 +35,7 @@ namespace Player
 
         private void FixedUpdate()
         {
+            if (_playerDash.IsDashing) return;
             var desiredVelocity = GetRotatedMovementDirection() * CurrentMaxSpeed;
             var currentVelocity = new Vector2(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.z);
             var deltaVelocity = (desiredVelocity - currentVelocity) * accelerationRate;
@@ -59,7 +66,5 @@ namespace Player
         {
             CurrentMaxSpeed = defaultMaxSpeed;
         }
-        
-        
     }
 }
