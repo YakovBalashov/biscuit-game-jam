@@ -32,11 +32,11 @@ namespace Player
         private IEnumerator Dash()
         {
             IsDashing = true;
-            _rigidbody.linearVelocity =
-                new Vector3(transform.forward.x * dashForce, 0, transform.forward.z * dashForce);
-            _rigidbody.useGravity = false;
+            _rigidbody.linearVelocity = new Vector3(transform.forward.x * dashForce, 0, transform.forward.z * dashForce);
+            var defaultRigidbodyConstraints = _rigidbody.constraints;
+            _rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
             yield return new WaitForSeconds(dashDuration);
-            _rigidbody.useGravity = true;
+            _rigidbody.constraints = defaultRigidbodyConstraints;
             _rigidbody.linearVelocity = new Vector3(0, 0, 0);
             yield return new WaitForSeconds(dashCooldown);
             IsDashing = false;
