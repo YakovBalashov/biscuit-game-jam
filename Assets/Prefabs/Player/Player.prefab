@@ -306,9 +306,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerJump
   fallSpeed: 2
   jumpForce: 10
-  groundCheckRadius: 0.3
+  groundCheckRadius: 0.1
   groundCheckDistance: 0.3
   coyoteTime: 0.2
+  jumpDelay: 0
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 257
