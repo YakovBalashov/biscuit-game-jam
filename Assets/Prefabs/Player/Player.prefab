@@ -305,12 +305,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerJump
   fallSpeed: 2
-  jumpForce: 5
+  jumpForce: 10
   groundCheckRadius: 0.3
   groundCheckDistance: 0.3
+  coyoteTime: 0.2
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 257
+  fallingThreshold: -0.1
 --- !u!114 &8762789910082882398
 MonoBehaviour:
   m_ObjectHideFlags: 0
