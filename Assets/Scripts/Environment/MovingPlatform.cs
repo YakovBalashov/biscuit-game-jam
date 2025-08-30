@@ -12,13 +12,13 @@ namespace Environment
         private void Update()
         {
             var pingPong = Mathf.PingPong(Time.time * speed, 1);
-            transform.position = Vector3.Lerp(pointA.position, pointB.position, pingPong);
+            transform.parent.position = Vector3.Lerp(pointA.position, pointB.position, pingPong);
         }
 
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.GetComponent<PlayerMovement>() == null) return;
-            other.transform.SetParent(transform);
+            other.transform.SetParent(transform.parent);
         }
         
         private void OnCollisionExit(Collision other)

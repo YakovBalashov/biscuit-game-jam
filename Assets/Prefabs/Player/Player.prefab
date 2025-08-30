@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerDash
   dashForce: 14
-  dashCooldown: 0.5
+  dashCooldown: 0.3
   dashDuration: 0.2
   animator: {fileID: 2611992930096053845}
 --- !u!114 &-8852006750848063152
@@ -304,8 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8578396437719c4e8633cf614e1d578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerJump
-  fallSpeed: 4
-  jumpForce: 4
+  fallSpeed: 2
+  jumpForce: 5
   groundCheckRadius: 0.3
   groundCheckDistance: 0.3
   groundLayerMask:
